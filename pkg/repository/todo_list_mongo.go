@@ -56,14 +56,20 @@ func (s *TodoMongoRepo) GetListById(id int) (structs.Todolist, error) {
 	return result, nil
 }
 
-func (s *TodoMongoRepo) UpdateList(input structs.Todolist, id int) (*mongo.UpdateResult, error) {
+func (s *TodoMongoRepo) UpdateList(input structs.UpdateListItem, id int) (*mongo.UpdateResult, error) {
 	database := s.db.Database("Todo").Collection("List")
 	
 	filter := bson.D{{"id",id}};
-	updateList := bson.D{{"$set",bson.D{
-		{"title",input.Title},
-		{"desctription",input.Desctription},
-	}}}
+	var setElements bson.D;
+
+	if input.Title != nil{ 
+		setElements = append(setElements, bson.E{"title",input.Title})
+	}
+	if input.Desctription != nil{ 
+		setElements = append(setElements, bson.E{"desctription",input.Desctription})
+	}
+
+	updateList := bson.D{{"$set",setElements}}
 	update,err := database.UpdateOne(context.TODO(),filter,updateList)
 	if err != nil {
 		return &mongo.UpdateResult{},err;
@@ -83,5 +89,4 @@ func(s *TodoMongoRepo)DeleteList(id int)(*mongo.DeleteResult,error) {
 	}
 
 	return deletelist,nil;
-
 }

@@ -57,7 +57,7 @@ func (h *Handler) getListById(c *gin.Context) {
 	})
 }
 func (h *Handler) updateList(c *gin.Context) {
-	var input structs.Todolist
+	var input structs.UpdateListItem
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return

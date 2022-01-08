@@ -2,8 +2,10 @@ package handler
 
 import (
 	"Golangcrud/pkg/service"
-
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/files"
 	"github.com/gin-gonic/gin"
+	_"Golangcrud/docs"
 )
 
 type Handler struct {
@@ -16,7 +18,7 @@ func NewHandler(service *service.Service) *Handler {
 
 func (h *Handler) Initroutes() *gin.Engine {
 	router := gin.New()
-
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	auth := router.Group("/auth")
 	{
 		auth.POST("/sign-up",h.SignUp)

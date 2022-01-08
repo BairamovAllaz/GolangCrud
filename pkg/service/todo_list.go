@@ -33,7 +33,7 @@ func (s *TodolistService) GetListById(id string) (structs.Todolist, error) {
 	return s.repo.GetListById(newid)
 }
 
-func (s *TodolistService) UpdateList(input structs.Todolist, id string) (*mongo.UpdateResult, error) {
+func (s *TodolistService) UpdateList(input structs.UpdateListItem, id string) (*mongo.UpdateResult, error) {
 	newid, err := strconv.Atoi(id)
 	if err != nil {
 		log.Fatalf("Error %s", err.Error())

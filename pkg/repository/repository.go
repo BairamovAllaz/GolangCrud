@@ -14,7 +14,7 @@ type Todolist interface {
 	Create(UserId int, list structs.Todolist) (string, error)
 	GetAll(UserId int) ([]structs.Todolist, error)
 	GetListById(id int) (structs.Todolist, error)
-	UpdateList(input structs.Todolist, id int) (*mongo.UpdateResult, error)
+	UpdateList(input structs.UpdateListItem, id int) (*mongo.UpdateResult, error)
 	DeleteList(id int)(*mongo.DeleteResult,error)
 }
 type Todoitem interface {

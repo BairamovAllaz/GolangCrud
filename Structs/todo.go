@@ -21,3 +21,8 @@ type Listitem struct {
 	ListId int
 	ItemId int
 }
+
+type UpdateListItem struct{ 
+	Title *string `json:"title"`
+	Desctription *string `json:"desctription"`
+}
