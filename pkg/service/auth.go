@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"time"
-
+	"math/rand"
 	"github.com/dgrijalva/jwt-go"
 )
 
@@ -49,6 +49,7 @@ func (s *Authservice) GenerateToken(username, password string) (string, error) {
 }
 
 func (s *Authservice) CreateUser(user structs.User) (string, error) {
+	user.Id = rand.Intn(10000);
 	user.Password = generatePasswordHash(user.Password)
 	return s.repo.CreateUser(user)
 }

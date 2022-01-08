@@ -3,7 +3,6 @@ package handler
 import (
 	structs "Golangcrud/Structs"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,7 +12,6 @@ func (h *Handler) SignUp(c *gin.Context) {
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, 400, err.Error())
 	}
-
 	id, err := h.services.Authorization.CreateUser(input)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())

@@ -30,7 +30,7 @@ func (h *Handler) Initroutes() *gin.Engine {
 			lists.POST("/",h.createList)
 			lists.GET("/",h.getAllList)
 			lists.GET("/:id",h.getListById)
-			lists.PUT("/:id",h.updateList)
+			lists.PATCH("/:id",h.updateList)
 			lists.DELETE("/:id",h.deleteList)
 		}
 

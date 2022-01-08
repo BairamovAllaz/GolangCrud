@@ -2,7 +2,7 @@ package structs
 
 type Todolist struct {
 	Id           int    `json:"id"`
-	Title        string `json:"title"`
+	Title        string `json:"title" binding:"required"`
 	Desctription string `json:"desctription"`
 }
 type Userlist struct {

@@ -1,4 +1,5 @@
 package repository
+
 //// package for database authentication functions!
 import (
 	structs "Golangcrud/Structs"
@@ -19,14 +20,12 @@ func NewAuthMongo(db *mongo.Client) *Authmongo {
 	return &Authmongo{db: db}
 }
 func (r *Authmongo) CreateUser(user structs.User) (string, error) {
-	// var id int;
 	db := r.db.Database("Todo").Collection("Users")
 	result, err := db.InsertOne(context.TODO(), user)
 	if err != nil {
 		logrus.Fatalf("Error while login %s", err.Error())
 	}
 	hexid := result.InsertedID.(primitive.ObjectID).Hex()
-
 	fmt.Printf("Id %v", result)
 	return hexid, nil
 }

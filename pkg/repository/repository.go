@@ -7,10 +7,15 @@ import (
 )
 
 type Authorization interface {
-	CreateUser(user structs.User) (string,error)
-	Getuser(username,password string) (structs.User,error)
+	CreateUser(user structs.User) (string, error)
+	Getuser(username, password string) (structs.User, error)
 }
 type Todolist interface {
+	Create(UserId int, list structs.Todolist) (string, error)
+	GetAll(UserId int) ([]structs.Todolist, error)
+	GetListById(id int) (structs.Todolist, error)
+	UpdateList(input structs.Todolist, id int) (*mongo.UpdateResult, error)
+	DeleteList(id int)(*mongo.DeleteResult,error)
 }
 type Todoitem interface {
 }
@@ -25,5 +30,6 @@ type Repository struct {
 func NewRepository(db *mongo.Client) *Repository {
 	return &Repository{
 		Authorization: NewAuthMongo(db),
+		Todolist:      NewTodoMongoRepo(db),
 	}
 }

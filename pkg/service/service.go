@@ -3,6 +3,8 @@ package service
 import (
 	structs "Golangcrud/Structs"
 	"Golangcrud/pkg/repository"
+
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type Authorization interface {
@@ -11,6 +13,11 @@ type Authorization interface {
 	Parsetoken(token string)(int,error)
 }
 type Todolist interface {
+	Create(UserId int,list structs.Todolist)(string,error)
+	GetAll(UserId int)([]structs.Todolist,error)
+	GetListById(id string)(structs.Todolist,error);
+	UpdateList(input structs.Todolist,id string)(*mongo.UpdateResult,error)
+	DeleteList(id string)(*mongo.DeleteResult,error)
 }
 type Todoitem interface {
 }
@@ -25,5 +32,6 @@ type Service struct {
 func NewServise(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization: newAuthService(repos.Authorization),
+		Todolist: NewTodolistService(repos.Todolist),
 	}
 }
