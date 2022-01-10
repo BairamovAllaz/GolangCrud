@@ -5,7 +5,6 @@ import (
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/files"
 	"github.com/gin-gonic/gin"
-	_"Golangcrud/docs"
 )
 
 type Handler struct {
@@ -23,6 +22,8 @@ func (h *Handler) Initroutes() *gin.Engine {
 	{
 		auth.POST("/sign-up",h.SignUp)
 		auth.POST("/sign-in",h.SignIn)
+		auth.POST("/forgot-password",h.ForgotPassword)
+		auth.POST("/forgot-password/:token",h.ForgotPasswordHandler)
 	}
 
 	api := router.Group("/api",h.userIdenity)

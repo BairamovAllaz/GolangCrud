@@ -11,6 +11,9 @@ type Authorization interface {
 	CreateUser(user structs.User)(string,error)
 	GenerateToken(username,password string)(string,error)
 	Parsetoken(token string)(int,error)
+	ForgotMypassword(myuser string,username structs.Fpasswordstruct)(string,error)
+	Checkdatabaseusertoken(token string)(structs.User,error)
+	ChangePassword(user structs.User,password structs.Newpassword)(string,error)
 }
 type Todolist interface {
 	Create(UserId int,list structs.Todolist)(string,error)

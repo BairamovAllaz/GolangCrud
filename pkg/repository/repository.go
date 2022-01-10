@@ -9,6 +9,9 @@ import (
 type Authorization interface {
 	CreateUser(user structs.User) (string, error)
 	Getuser(username, password string) (structs.User, error)
+	ForgotMypassword(token string,myuser string,username structs.Fpasswordstruct)(string,error)
+	Checkdatabaseusertoken(token string)(structs.User,error)
+	ChangePassword(username string,newpassword string)(string,error)
 }
 type Todolist interface {
 	Create(UserId int, list structs.Todolist) (string, error)

@@ -14,16 +14,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
-
-//@title TODO APP API
-//@version 1.0
-//@desctription My test api server
-//@host localhost:8000
-//@BasePath /
-//@securityDefinitions.apikey ApiKeyAuth
-//@in header
-//@name Authorization 
-
+ 
 
 func main() {
 	logrus.SetFormatter(new(logrus.JSONFormatter)) //set logrus formatter~
