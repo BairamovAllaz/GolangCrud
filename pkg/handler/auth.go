@@ -50,8 +50,6 @@ func (h *Handler) SignIn(c *gin.Context) {
 	})
 }
 
-
-
 func (h *Handler) ForgotPassword(c *gin.Context) { 
 	var input structs.Fpasswordstruct;
 	if err := c.BindJSON(&input);err != nil {
